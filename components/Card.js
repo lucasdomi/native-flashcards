@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Text, View, StyleSheet, Dimensions } from 'react-native';
+import { Button, Text, View, StyleSheet } from 'react-native';
 import styled from 'styled-components/native'
 import {widthDevice, heigthDevice} from '../helpers/Dimension';
 import Response from './Response';
