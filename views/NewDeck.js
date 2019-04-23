@@ -5,6 +5,9 @@ import { heigthDevice, widthDevice } from '../helpers/Dimension';
 import { newDeck } from '../asyncStorage/index';
 
 export default class CreateDeck extends React.Component {
+  static navigationOptions = {
+    title: 'Create Deck'
+  }
   state = {
     input: '',
   }
@@ -15,9 +18,11 @@ export default class CreateDeck extends React.Component {
     })
   }
 
-  handleCreateDeck = () => (
-    newDeck( this.state.input )
-  )
+  handleNewDeck = () => {
+    const { navigate } = this.props.navigation
+    newDeck(this.state.input)
+    navigate('Home')
+  }
 
   render() {
     const { input } = this.state

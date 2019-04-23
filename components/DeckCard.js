@@ -7,7 +7,7 @@ export default class DeckCard extends React.Component {
 
     return(
       <View style={styles.createView}>
-        <DeckText>{ title }</DeckText>
+        <Text style={styles.deckText}>{ title }</Text>
         <Text style={styles.totalQuestions}>{ questionsCount } questions.</Text>
       </View>
     )

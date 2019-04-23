@@ -23,6 +23,12 @@ const deckQuestions = { questions: [
 ]}
 
 export default class Deck extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: navigation.getParam('title', 'Quiz'),
+    };
+  };
+
   state = {
     scrollHeight: 0,
   }
@@ -45,17 +51,12 @@ export default class Deck extends React.Component {
     return (
       <ScrollView ref={(c) => this.scroll = c} scrollEnabled={false} style={{ flex: 1 }}>
         <FlatList
+          style={styles.cardView}
           data={ deckQuestions.questions }
           renderItem={ ({item}) => <Card item={item} goToNext={ this.scrollTo }/> }
           keyExtractor={(item, index) => index.toString()}
         />
-        {/* <View style={styles.cardView}>
-          <Text style={styles.textCongratulations}> Congratulations!!</Text>
-          <TouchableOpacity onPress={ this.restartQuiz } >
-            <Text>Restart quiz!</Text>
-          </TouchableOpacity>
-        </View> */}
-        <Response />
+        <Response restartQuiz={this.restartQuiz}/>
     </ScrollView>
     );
   }
@@ -65,12 +66,11 @@ const styles = StyleSheet.create({
   cardView: {
     flex: 1,
     height: heigthDevice*0.8, 
-    justifyContent: 'center', 
-    alignItems: 'center',
+    // justifyContent: 'center', 
+    // alignItems: 'center',
     backgroundColor: '#74B3CE',
     marginTop: heigthDevice*0.1,
     marginBottom: heigthDevice*0.1,
-    width: widthDevice * 0.8,
   },
   textCongratulations: {
     fontSize: 25,
