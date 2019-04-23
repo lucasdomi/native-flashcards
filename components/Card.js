@@ -16,7 +16,7 @@ export default class Card extends React.Component {
   render() {
     const { item, goToNext } = this.props
     return (
-      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice*0.7 }} onFlipEnd={ this.fliped }>
+      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }} onFlipEnd={ this.fliped }>
         <CardView style={ styles.cardView }>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
           <TouchableOpacity onPress={ () => this[`card${item.id}`].flip() } >
@@ -40,9 +40,6 @@ const styles = StyleSheet.create({
     padding: 20,
     justifyContent: 'center',
     backgroundColor: '#B0E0E6',
-    height: heigthDevice*0.8,
-    marginTop: heigthDevice*0.1,
-    marginBottom: heigthDevice*0.1,
   },
   cardQuestion: {
     color: '#111',

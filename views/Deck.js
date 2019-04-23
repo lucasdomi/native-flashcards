@@ -15,11 +15,6 @@ const deckQuestions = { questions: [
     question: 'Where do you make Ajax requests in React?',
     answer: 'The componentDidMount lifecycle event'
   },
-  {
-    id: 2,
-    question: 'What is a closure?',
-    answer: 'The combination of a function and the lexical environment within which that function was declared.'
-  }
 ]}
 
 export default class Deck extends React.Component {
@@ -51,7 +46,6 @@ export default class Deck extends React.Component {
     return (
       <ScrollView ref={(c) => this.scroll = c} scrollEnabled={false} style={{ flex: 1 }}>
         <FlatList
-          style={styles.cardView}
           data={ deckQuestions.questions }
           renderItem={ ({item}) => <Card item={item} goToNext={ this.scrollTo }/> }
           keyExtractor={(item, index) => index.toString()}
