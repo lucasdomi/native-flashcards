@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, ScrollView, Dimensions, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Card from '../components/Card'
 import {widthDevice, heigthDevice} from '../helpers/Dimension';
+import Response from '../components/Response'
 
 const deckQuestions = { questions: [
   {
@@ -48,12 +49,13 @@ export default class Deck extends React.Component {
           renderItem={ ({item}) => <Card item={item} goToNext={ this.scrollTo }/> }
           keyExtractor={(item, index) => index.toString()}
         />
-        <View style={styles.cardView}>
+        {/* <View style={styles.cardView}>
           <Text style={styles.textCongratulations}> Congratulations!!</Text>
           <TouchableOpacity onPress={ this.restartQuiz } >
             <Text>Restart quiz!</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
+        <Response />
     </ScrollView>
     );
   }
