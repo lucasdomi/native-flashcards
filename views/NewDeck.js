@@ -1,6 +1,5 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions, StyleSheet } from 'react-native'
-import styled from 'styled-components'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { heigthDevice, widthDevice } from '../helpers/Dimension';
 import {newDeck} from '../asyncStorage';
@@ -17,9 +16,9 @@ export default class CreateDeck extends React.Component {
   }
 
   handleCreateDeck = () => (
-    createDeck( this.state.input )
+    newDeck( this.state.input )
   )
-  
+
   render() {
     const { input } = this.state
 
