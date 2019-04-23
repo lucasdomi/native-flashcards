@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions, StyleSheet } from 'react-native'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { heigthDevice, widthDevice } from '../helpers/Dimension';
-import {newDeck} from '../asyncStorage';
+import { newDeck } from '../asyncStorage/index';
 
 export default class CreateDeck extends React.Component {
   state = {
