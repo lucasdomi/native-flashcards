@@ -1,73 +1,83 @@
-import React from 'react';
-import { View, Text, ScrollView, Dimensions, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
-import Card from '../components/Card'
-import {widthDevice, heigthDevice} from '../helpers/Dimension';
-import Response from '../components/Response'
+import React from 'react'
+import { Text, View, TouchableOpacity } from 'react-native'
+import styled from 'styled-components'
 
-const deckQuestions = { questions: [
-  {
-    id: 0,
-    question: 'What is React?',
-    answer: 'A library for managing user interfaces'
-  },
-  {
-    id: 1,
-    question: 'Where do you make Ajax requests in React?',
-    answer: 'The componentDidMount lifecycle event'
-  },
-]}
+const CreateView = styled.View`
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  background-color: #8338EC;
+  padding: 0 30px;
+`
 
-export default class Deck extends React.Component {
+const CreateButton = styled.TouchableOpacity`
+  backgroundColor: #ec38a1;
+  padding: 10px 50px;
+  width: 200;
+  margin: 7px 0;
+`
+
+const CreateButtonGhost = styled.TouchableOpacity`
+  backgroundColor: transparent;
+  padding: 10px 50px;
+  border-width: 1px;
+  border-color: #ec38a1;
+  width: 200;
+  margin: 7px 0;
+`
+
+const TitleText = styled.Text`
+  font-size: 24px;
+  text-align: center;
+  color: white;
+  margin: 15px 0;
+`
+
+const ButtonText = styled.Text`
+  color: white;
+  text-transform: uppercase;
+  font-size: 14px;
+  text-align: center;
+`
+
+export default class CreateDeck extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', 'Quiz'),
     };
-  };
+  }
 
-  state = {
-    scrollHeight: 0,
+  addQuestion = deckTitle => {
+    const { navigate } = this.props.navigation
+    navigate('AddQuestion', { deck: deckTitle })
   }
-  scrollTo = scrollSize => {
-    this.setState( state => ({
-      ...state,
-      scrollHeight: state.scrollHeight + scrollSize,
-    }), () =>{
-      this.scroll.scrollTo({x: 0, y: this.state.scrollHeight, animated: true});
-    })
+
+  goToQuiz = questions => {
+    const { navigate } = this.props.navigation
+    navigate('QuizPage', { questions })
   }
-  restartQuiz = () => {
-    this.setState( state => ({
-      scrollHeight: 0,
-    }), () => {
-      this.scrollTo(0)
-    })
-  }
+
   render() {
+    const { navigation } = this.props
+    const title = navigation.getParam('title', '')
+    const questions = navigation.getParam('questions', [])
+
     return (
-      <ScrollView ref={(c) => this.scroll = c} scrollEnabled={false} style={{ flex: 1 }}>
-        <FlatList
-          data={ deckQuestions.questions }
-          renderItem={ ({item}) => <Card item={item} goToNext={ this.scrollTo }/> }
-          keyExtractor={(item, index) => index.toString()}
-        />
-        <Response restartQuiz={this.restartQuiz}/>
-    </ScrollView>
-    );
+      <CreateView behavior='padding'>
+        <TitleText>
+          { title }
+        </TitleText>
+        <CreateButton
+          onPress={ () => this.goToQuiz(questions) }
+        >
+          <ButtonText>Start Quiz</ButtonText>
+        </CreateButton>
+        <CreateButtonGhost
+          onPress={ () => this.AddQuestion(title) }
+        >
+          <ButtonText>Add Question</ButtonText>
+        </CreateButtonGhost>
+      </CreateView>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  cardView: {
-    flex: 1,
-    height: heigthDevice*0.8, 
-    // justifyContent: 'center', 
-    // alignItems: 'center',
-    backgroundColor: '#74B3CE',
-    marginTop: heigthDevice*0.1,
-    marginBottom: heigthDevice*0.1,
-  },
-  textCongratulations: {
-    fontSize: 25,
-    color: '#fff',
-  }
-});
