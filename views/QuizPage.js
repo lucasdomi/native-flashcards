@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView, Dimensions, FlatList, TouchableOpacity } from 'react-native';
 import Card from '../components/Card'
-import Result from '../components/Result'
+import Response from '../components/Response'
 
 const deck = { questions: [
   {
@@ -16,7 +16,7 @@ const deck = { questions: [
   }
 ]}
 
-export default class DeckPage extends React.Component {
+export default class QuizPage extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', 'Quiz'),
@@ -56,7 +56,7 @@ export default class DeckPage extends React.Component {
           renderItem={ ( { item } ) => <Card item={item} goToNext={ this.scrollTo }/> }
           keyExtractor={(item, index) => index.toString()}
         />
-        <Result restartQuiz={ this.restartQuiz } />
+        <Response restartQuiz={ this.restartQuiz } />
       </ScrollView>
     );
   }

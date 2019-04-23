@@ -3,12 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import Deck from './views/Deck';
 import NewDeck from './views/NewDeck';
 import DecksList from './views/ListDecks';
+import QuizPage from './views/QuizPage';
+
 import { createStackNavigator,  createAppContainer} from 'react-navigation'
 
 const MainNavigator = createStackNavigator({
   Home: {screen: DecksList},
   Deck: {screen: Deck},
-	CreateDeck: {screen: NewDeck},
+  CreateDeck: {screen: NewDeck},
+  QuizPage: {screen: QuizPage}
 });
 
 const App = createAppContainer(MainNavigator)

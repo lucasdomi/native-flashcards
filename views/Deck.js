@@ -40,7 +40,7 @@ const ButtonText = styled.Text`
   text-align: center;
 `
 
-export default class CreateDeck extends React.Component {
+export default class Deck extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: navigation.getParam('title', 'Quiz'),
@@ -73,7 +73,7 @@ export default class CreateDeck extends React.Component {
           <ButtonText>Start Quiz</ButtonText>
         </CreateButton>
         <CreateButtonGhost
-          onPress={ () => this.AddQuestion(title) }
+          onPress={ () => this.addQuestion(title) }
         >
           <ButtonText>Add Question</ButtonText>
         </CreateButtonGhost>
