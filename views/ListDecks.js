@@ -1,5 +1,5 @@
 import React from 'react'
-import { TouchableOpacity, Text, View, StyleSheet } from 'react-native'
+import { TouchableOpacity, Text, View, StyleSheet, ScrollView, FlatList } from 'react-native'
 import { getDecks } from '../asyncStorage'
 import DeckCard from '../components/DeckCard'
 import { NavigationEvents } from 'react-navigation';
@@ -27,13 +27,14 @@ export default class DecksList extends React.Component {
        decks,
      }))
   }
-  goToDeckPage = deck => {
+  goToDeckPage = (title, questions) => {
     const { navigate } = this.props.navigation
     navigate('Deck', {
-      title: deck.title,
-      questions: deck.questions,
+      title,
+      questions
     })
   }
+
   createDeck = () => {
     const { navigate } = this.props.navigation
     navigate('CreateDeck', {})
@@ -42,24 +43,30 @@ export default class DecksList extends React.Component {
   render () {
     console.log(JSON.stringify(this.state))
     const { loading, decks } = this.state
+    const deckIds = Object.keys(decks);
+
     return (
       <View style={styles.homeView}>
         <NavigationEvents onDidFocus={this.getAllDecks} />
         { loading && <Text>Loading</Text>  }
-        {  decks && Object.keys(decks).map( (deck, idx) => (
-          <TouchableOpacity
-            onPress ={() => this.goToDeckPage(decks[deck])}
-            key = {idx}
-          >
-            <DeckCard
-              title={ decks[deck].title }
-              questionsCount={decks[deck].questions.length }
+        { decks &&
+          <ScrollView>
+          <FlatList
+            data={ deckIds }
+            renderItem={ ( { item } ) => {
+              return <DeckCard
+                title={ decks[item].title }
+                questions={ decks[item].questions }
+                goToDeckPage= { this.goToDeckPage }
+              />
+            }}
+            keyExtractor={ (deckIds, index) => index.toString()}
           />
+          <TouchableOpacity onPress={ this.createDeck }>
+            <Text>Create Deck</Text>
           </TouchableOpacity>
-        ))}
-        <TouchableOpacity onPress={ this.createDeck }>
-          <Text style={styles.textButtonNewDeck}>Create Deck</Text>
-        </TouchableOpacity>
+          </ScrollView>
+        }
       </View>
     )
   }

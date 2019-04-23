@@ -16,7 +16,7 @@ export default class Card extends React.Component {
   render() {
     const { item, goToNext } = this.props
     return (
-      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }} onFlipEnd={ this.fliped }>
+      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }}>
         <CardView style={ styles.cardView }>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
           <TouchableOpacity onPress={ () => this[`card${item.id}`].flip() } >

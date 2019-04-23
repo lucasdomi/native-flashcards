@@ -1,15 +1,17 @@
 import React from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
 export default class DeckCard extends React.Component {
   render() {
-    const { title, questionsCount } = this.props
+    const { title, questions, goToDeckPage } = this.props
 
     return(
-      <View style={styles.createView}>
-        <Text style={styles.deckText}>{ title }</Text>
-        <Text style={styles.totalQuestions}>{ questionsCount } questions.</Text>
-      </View>
+      <TouchableOpacity onPress={() => goToDeckPage(title, questions)}>
+        <View style={styles.createView}>
+          <Text style={styles.deckText}>{ title }</Text>
+          <Text style={styles.totalQuestions}>{ questions.length } questions</Text>
+        </View>
+      </TouchableOpacity>
     )
   }
 }
