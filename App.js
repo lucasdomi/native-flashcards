@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Deck from './views/Deck';
-
+import NewDeck from './views/NewDeck';
 export default class App extends React.Component {
   render() {
     return (
