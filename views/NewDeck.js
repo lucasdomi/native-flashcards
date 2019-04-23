@@ -3,6 +3,7 @@ import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensio
 import styled from 'styled-components'
 import { MaterialCommunityIcons } from '@expo/vector-icons'
 import { heigthDevice, widthDevice } from '../helpers/Dimension';
+import {newDeck} from '../asyncStorage';
 
 export default class CreateDeck extends React.Component {
   state = {
@@ -15,6 +16,10 @@ export default class CreateDeck extends React.Component {
     })
   }
 
+  handleCreateDeck = () => (
+    createDeck( this.state.input )
+  )
+  
   render() {
     const { input } = this.state
 
@@ -29,7 +34,7 @@ export default class CreateDeck extends React.Component {
         />
         <TouchableOpacity
           style={styles.createButton}
-          onPress={ () => console.log('action new deck') }
+          onPress={ this.handleNewDeck }
         >
           <Text style={styles.buttonText}>New Deck</Text>
         </TouchableOpacity>

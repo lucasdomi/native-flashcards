@@ -2,7 +2,7 @@ import { AsyncStorage } from 'react-native'
 
 const storageKey = 'NATIVE_FLASHCARDS'
 
-export function createDeck ( name ) {
+export function newDeck ( name ) {
   return AsyncStorage.mergeItem(storageKey, JSON.stringify({
     [name]: {
       title: name,
@@ -11,6 +11,7 @@ export function createDeck ( name ) {
   }))
 }
 
-export const getDecks = async () => (
-  await AsyncStorage.getItem(storageKey)
-)
+export const getDecks = async () => {
+  const decks = await AsyncStorage.getItem(storageKey)
+  return JSON.parse(decks)
+}
