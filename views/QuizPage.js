@@ -3,18 +3,6 @@ import { View, Text, ScrollView, Dimensions, FlatList, TouchableOpacity } from '
 import Card from '../components/Card'
 import Response from '../components/Response'
 
-const deck = { questions: [
-  {
-    id: 0,
-    question: 'What is React?',
-    answer: 'A library for managing user interfaces'
-  },
-  {
-    id: 1,
-    question: 'Where do you make Ajax requests in React?',
-    answer: 'The componentDidMount lifecycle event'
-  }
-]}
 
 export default class QuizPage extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -45,6 +33,7 @@ export default class QuizPage extends React.Component {
   }
 
   render() {
+    const questions = this.props.navigation.getParam('questions', []);
     return (
       <ScrollView
         ref={(c) => this.scroll = c}
@@ -52,7 +41,7 @@ export default class QuizPage extends React.Component {
         style={{ flex: 1 }}
       >
         <FlatList
-          data={ deck.questions }
+          data={ questions }
           renderItem={ ( { item } ) => <Card item={item} goToNext={ this.scrollTo }/> }
           keyExtractor={(item, index) => index.toString()}
         />

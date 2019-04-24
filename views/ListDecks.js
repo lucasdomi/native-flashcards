@@ -27,11 +27,10 @@ export default class DecksList extends React.Component {
        decks,
      }))
   }
-  goToDeckPage = (title, questions) => {
+  goToDeckPage = (title) => {
     const { navigate } = this.props.navigation
     navigate('Deck', {
       title,
-      questions
     })
   }
 

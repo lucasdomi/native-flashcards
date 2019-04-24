@@ -1,6 +1,8 @@
 import React from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
 import styled from 'styled-components'
+import { getQuestionsByDeck } from '../asyncStorage';
+import { NavigationEvents } from 'react-navigation';
 
 const CreateView = styled.View`
   flex: 1;
@@ -47,20 +49,37 @@ export default class Deck extends React.Component {
     };
   }
 
+  state = {
+    questions: [],
+  }
+
+  componentDidMount() {
+    this.getDeckQuestions()
+  }
+
+  getDeckQuestions = async() => {
+    const deckTitle = this.props.navigation.getParam('title', '')
+    const questions = await getQuestionsByDeck( deckTitle )
+    this.setState( state => ({
+      ...state,
+      questions,
+    }))
+  }
+
   addQuestion = deckTitle => {
     const { navigate } = this.props.navigation
     navigate('AddQuestion', { deck: deckTitle })
   }
 
-  goToQuiz = questions => {
+  goToQuiz = (title, questions) => {
     const { navigate } = this.props.navigation
-    navigate('QuizPage', { questions })
+    navigate('QuizPage', { title, questions })
   }
 
   render() {
     const { navigation } = this.props
     const title = navigation.getParam('title', '')
-    const questions = navigation.getParam('questions', [])
+    const { questions } = this.state
 
     return (
       <CreateView behavior='padding'>
@@ -68,7 +87,7 @@ export default class Deck extends React.Component {
           { title }
         </TitleText>
         <CreateButton
-          onPress={ () => this.goToQuiz(questions) }
+          onPress={ () => this.goToQuiz(title,questions) }
         >
           <ButtonText>Start Quiz</ButtonText>
         </CreateButton>
