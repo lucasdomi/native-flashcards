@@ -3,20 +3,21 @@ import { Button, Text, View, StyleSheet, TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native'
 import {heigthDevice, widthDevice} from '../helpers/Dimension';
 import CardFlip from 'react-native-card-flip';
+import { Header } from 'react-navigation';
 
 const CardView = styled.View`
   box-shadow: 5px 5px 5px rgba(0,0,0,1);
 `
 
 export default class Card extends React.Component {
-  handleVote = ( card, goToNext ) => {
+  handleVote = ( card, goToNext, correct ) => {
     card.flip()
-    goToNext( heigthDevice )
+    goToNext( heigthDevice, correct )
   }
   render() {
     const { item, goToNext } = this.props
     return (
-      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }}>
+      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice - Header.HEIGHT, width: widthDevice }}>
         <CardView style={ styles.cardView }>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
           <TouchableOpacity onPress={ () => this[`card${item.id}`].flip() } >
@@ -25,9 +26,9 @@ export default class Card extends React.Component {
         </CardView>
         <CardView style={styles.cardView}>
           <Text style={styles.cardQuestion}>{ item.answer }</Text>
-          <Button title='Yes' color='green' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext )} />
+          <Button title='Yes' color='green' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, true )} />
           <View style={{ marginBottom: 10 }} />
-          <Button title='No' color='red' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext ) }/>
+          <Button title='No' color='red' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, false ) }/>
         </CardView>
     </CardFlip>
     );

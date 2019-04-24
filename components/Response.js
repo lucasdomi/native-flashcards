@@ -2,29 +2,22 @@ import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
 import styled from 'styled-components'
 import {widthDevice,heigthDevice} from '../helpers/Dimension';
+import { Header } from 'react-navigation'
 
-const ResultText = styled.Text`
-  font-size: 28px;
-  color: #fff;
-`
-
-export default class Result extends React.Component {
+export default class Response extends React.Component {
   state = {
     scrollHeight: 0,
   }
 
   render() {
-    const { restartQuiz } = this.props;
+    const { restartQuiz, pontuation } = this.props
     return (
-      <ScrollView ref={(c) => this.scroll = c} scrollEnabled={false} style={{ flex: 1 }}>
-        <View style={styles.cardView}>
-          <Text style={styles.responseCard}>Congratulations!</Text>
-          <TouchableOpacity onPress={ restartQuiz } >
-          < Text>Restart Quiz!</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-
+      <View style={styles.cardView}>
+        <Text style={styles.responseCard}>Your pontuation is: {pontuation} !</Text>
+        <TouchableOpacity onPress={ restartQuiz } >
+        < Text>Restart Quiz!</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
@@ -36,7 +29,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#B0E0E6',
-      height: heigthDevice,
+      height: heigthDevice-Header.HEIGHT,
     },
     responseCard: {
       textAlign: 'center',
