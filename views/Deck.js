@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import styled from 'styled-components'
 import { getQuestionsByDeck } from '../asyncStorage';
 import { NavigationEvents } from 'react-navigation';
@@ -86,11 +86,13 @@ export default class Deck extends React.Component {
         <TitleText>
           { title }
         </TitleText>
-        <CreateButton
-          onPress={ () => this.goToQuiz(title,questions) }
-        >
-          <ButtonText>Start Quiz</ButtonText>
-        </CreateButton>
+        {questions.length > 0 && 
+          <CreateButton
+            onPress={ () => this.goToQuiz(title,questions) }
+          >
+            <ButtonText>Start Quiz</ButtonText>
+          </CreateButton>
+        }
         <CreateButtonGhost
           onPress={ () => this.addQuestion(title) }
         >
