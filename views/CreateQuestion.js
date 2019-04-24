@@ -1,36 +1,8 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions } from 'react-native'
+import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions, StyleSheet } from 'react-native'
 import styled from 'styled-components'
 import { addQuestion } from '../asyncStorage'
-
-const CreateView = styled.KeyboardAvoidingView`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: #8338EC;
-  padding: 0 30px;
-`
-
-const CreateInput = styled.TextInput`
-  width: ${Dimensions.get('window').width - 80};
-  height: 40px;
-  color: white;
-  border-bottom-color: #eee;
-  border-bottom-width: 1px;
-  margin: 30px 0;
-  font-size: 18px;
-`
-
-const CreateButton = styled.TouchableOpacity`
-  backgroundColor: #ec38a1;
-  padding: 10px 50px;
-`
-
-const ButtonText = styled.Text`
-  color: white;
-  text-transform: uppercase;
-  font-size: 14px;
-`
+import {widthDevice} from '../helpers/Dimension'
 
 export default class CreateDeck extends React.Component {
   static navigationOptions = {
@@ -62,25 +34,60 @@ export default class CreateDeck extends React.Component {
     const { question, answer } = this.state
 
     return (
-      <CreateView behavior='padding'>
-        <CreateInput
+      <KeyboardAvoidingView style={styles.createView} behavior='padding'>
+        <TextInput
+          style={styles.createInput}
           value={ question }
           onChangeText={ (input) => this.handleTextChange(input, 'question') }
           placeholder='Insert the question'
           placeholderTextColor='#ccc'
         />
-        <CreateInput
+        <TextInput
+          style={styles.createInput}
           value={ answer }
           onChangeText={ (input) => this.handleTextChange(input, 'answer') }
           placeholder='Insert the answer'
           placeholderTextColor='#ccc'
         />
-        <CreateButton
+        <TouchableOpacity
+          style={styles.createButton}
           onPress={ this.handleAddQuestion }
         >
-          <ButtonText>Add Question</ButtonText>
-        </CreateButton>
-      </CreateView>
+          <Text style={styles.buttonText}>Add Question</Text>
+        </TouchableOpacity>
+      </KeyboardAvoidingView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  createView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8338EC',
+    paddingVertical: 0 ,
+    paddingHorizontal: 30,
+  },
+  createInput: {
+    width: widthDevice - 80,
+    height: 40,
+    color: 'white',
+    borderBottomColor: '#eee',
+    borderBottomWidth: 1,
+    marginVertical: 30,
+    marginHorizontal: 0,
+    fontSize: 18,
+  },
+  createButton: {
+    backgroundColor: '#ec38a1',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+  },
+  buttonText: {
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center'
+  }
+});

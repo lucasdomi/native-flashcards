@@ -1,6 +1,5 @@
 import React from 'react'
-import { Text, View, TouchableOpacity, KeyboardAvoidingView, TextInput, Dimensions, StyleSheet } from 'react-native'
-import { MaterialCommunityIcons } from '@expo/vector-icons'
+import { Text, TouchableOpacity, KeyboardAvoidingView, TextInput, StyleSheet } from 'react-native'
 import { heigthDevice, widthDevice } from '../helpers/Dimension';
 import { newDeck } from '../asyncStorage/index';
 

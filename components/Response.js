@@ -1,7 +1,6 @@
 import React from 'react'
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native'
-import styled from 'styled-components'
-import {widthDevice,heigthDevice} from '../helpers/Dimension';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
+import { heigthDevice } from '../helpers/Dimension';
 import { Header } from 'react-navigation'
 
 export default class Response extends React.Component {

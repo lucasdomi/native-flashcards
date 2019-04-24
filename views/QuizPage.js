@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, ScrollView, Dimensions, FlatList, TouchableOpacity } from 'react-native';
+import { ScrollView, FlatList } from 'react-native';
 import Card from '../components/Card'
 import Response from '../components/Response'
 

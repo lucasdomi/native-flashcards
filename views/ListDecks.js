@@ -40,7 +40,6 @@ export default class DecksList extends React.Component {
   }
 
   render () {
-    console.log(JSON.stringify(this.state))
     const { loading, decks } = this.state
     const deckIds = decks && Object.keys(decks);
 
@@ -64,7 +63,7 @@ export default class DecksList extends React.Component {
           </ScrollView>
         : 
         <Text>Dont have decks created :( </Text>}
-        <TouchableOpacity onPress={ this.createDeck }>
+          <TouchableOpacity style={styles.textButtonNewDeck} onPress={ this.createDeck }>
             <Text>Create Deck</Text>
           </TouchableOpacity>
       </View>
@@ -77,6 +76,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
     paddingHorizontal: 20,
+    justifyContent: 'flex-start'
   },
   textButtonNewDeck: {
     textAlign: 'center',

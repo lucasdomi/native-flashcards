@@ -1,46 +1,7 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-import styled from 'styled-components'
 import { getQuestionsByDeck } from '../asyncStorage';
 import { NavigationEvents } from 'react-navigation';
-
-const CreateView = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  background-color: #8338EC;
-  padding: 0 30px;
-`
-
-const CreateButton = styled.TouchableOpacity`
-  backgroundColor: #ec38a1;
-  padding: 10px 50px;
-  width: 200;
-  margin: 7px 0;
-`
-
-const CreateButtonGhost = styled.TouchableOpacity`
-  backgroundColor: transparent;
-  padding: 10px 50px;
-  border-width: 1px;
-  border-color: #ec38a1;
-  width: 200;
-  margin: 7px 0;
-`
-
-const TitleText = styled.Text`
-  font-size: 24px;
-  text-align: center;
-  color: white;
-  margin: 15px 0;
-`
-
-const ButtonText = styled.Text`
-  color: white;
-  text-transform: uppercase;
-  font-size: 14px;
-  text-align: center;
-`
 
 export default class Deck extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -82,23 +43,66 @@ export default class Deck extends React.Component {
     const { questions } = this.state
 
     return (
-      <CreateView behavior='padding'>
-        <TitleText>
-          { title }
-        </TitleText>
+      <View style={styles.cardView} behavior='padding'>
+        <Text style={styles.titleText}>
+          {title}
+        </Text>
         {questions.length > 0 && 
-          <CreateButton
+          <TouchableOpacity
+            style={styles.createButton}
             onPress={ () => this.goToQuiz(title,questions) }
           >
-            <ButtonText>Start Quiz</ButtonText>
-          </CreateButton>
+            <Text style={styles.buttonText}>Start Quiz</Text>
+          </TouchableOpacity>
         }
-        <CreateButtonGhost
+        <TouchableOpacity
+          style={styles.createButtonGhost}
           onPress={ () => this.addQuestion(title) }
         >
-          <ButtonText>Add Question</ButtonText>
-        </CreateButtonGhost>
-      </CreateView>
+          <Text style={styles.buttonText}>Add Question</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  cardView: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8338EC',
+    paddingVertical: 0 ,
+    paddingHorizontal: 30,
+  },
+  createButton: {
+    backgroundColor: '#ec38a1',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    width: 200,
+    marginVertical: 7,
+    marginHorizontal: 0
+  },
+  createButtonGhost: {
+    backgroundColor: 'transparent',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    borderWidth: 1,
+    borderColor: '#ec38a1',
+    marginVertical: 7,
+    marginHorizontal: 0
+  },
+  titleText: {
+    fontSize: 24,
+    textAlign: 'center',
+    color: 'white',
+    marginVertical: 15,
+    marginHorizontal: 0,
+  },
+  buttonText: {
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center'
+  }
+});
