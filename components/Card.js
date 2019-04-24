@@ -12,7 +12,7 @@ export default class Card extends React.Component {
   render() {
     const { item, index, questionCount, goToNext } = this.props
     return (
-      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice - Header.HEIGHT, width: widthDevice }}>
+      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }}>
         <View style={ styles.cardView }>
           <Text style={{marginBottom: 10 ,color: 'gray', fontSize: 12}}>{ `Question ${index + 1} of ${questionCount}`}</Text>
           <Text style={styles.cardQuestion}>{ item.question }</Text>

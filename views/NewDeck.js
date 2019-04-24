@@ -19,8 +19,11 @@ export default class CreateDeck extends React.Component {
 
   handleNewDeck = () => {
     const { navigate } = this.props.navigation
-    newDeck(this.state.input)
-    navigate('Home')
+    const {input} = this.state
+    newDeck(input)
+    navigate('Deck', {
+      title: input,
+    })
   }
 
   render() {
