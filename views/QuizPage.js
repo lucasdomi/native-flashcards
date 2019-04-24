@@ -63,7 +63,7 @@ export default class QuizPage extends React.Component {
       >
         <FlatList
           data={ questions }
-          renderItem={ ( { item, index } ) => <Card item={item} index={index}  questionCount={questions.length} goToNext={ this.goToNext }/> }
+          renderItem={ ( { item, index } ) => <Card item={item} index={index} questionCount={questions.length} goToNext={ this.goToNext }/> }
           keyExtractor={(item, index) => index.toString()}
         />
         <Response pontuation={ pontuation } restartQuiz={ this.restartQuiz } />

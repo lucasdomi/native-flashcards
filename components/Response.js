@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#B0E0E6',
-      height: heigthDevice + Header.HEIGHT,
+      height: heigthDevice,
     },
     responseCard: {
       textAlign: 'center',

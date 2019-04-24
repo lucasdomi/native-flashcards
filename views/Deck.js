@@ -41,9 +41,9 @@ export default class Deck extends React.Component {
     const { navigation } = this.props
     const title = navigation.getParam('title', '')
     const { questions } = this.state
-
     return (
       <View style={styles.cardView} behavior='padding'>
+        <NavigationEvents onDidFocus ={this.getDeckQuestions} />
         <Text style={styles.titleText}>
           {title}
         </Text>
