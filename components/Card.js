@@ -15,10 +15,11 @@ export default class Card extends React.Component {
     goToNext( heigthDevice, correct )
   }
   render() {
-    const { item, goToNext } = this.props
+    const { item, index, questionCount, goToNext } = this.props
     return (
       <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice - Header.HEIGHT, width: widthDevice }}>
         <CardView style={ styles.cardView }>
+          <Text style={{marginBottom: 10 ,color: 'gray', fontSize: 12}}>{ `Question ${index + 1} of ${questionCount}`}</Text>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
           <TouchableOpacity onPress={ () => this[`card${item.id}`].flip() } >
             <Text style={styles.cardLink}>Check the answer!</Text>
@@ -40,6 +41,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: '#B0E0E6',
   },
   cardQuestion: {

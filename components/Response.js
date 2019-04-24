@@ -25,11 +25,10 @@ export default class Response extends React.Component {
 const styles = StyleSheet.create({
     cardView: {
       flex: 1,
-      padding: 20,
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#B0E0E6',
-      height: heigthDevice-Header.HEIGHT,
+      height: heigthDevice + Header.HEIGHT,
     },
     responseCard: {
       textAlign: 'center',
