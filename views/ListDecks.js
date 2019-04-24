@@ -42,13 +42,13 @@ export default class DecksList extends React.Component {
   render () {
     console.log(JSON.stringify(this.state))
     const { loading, decks } = this.state
-    const deckIds = Object.keys(decks);
+    const deckIds = decks && Object.keys(decks);
 
     return (
       <View style={styles.homeView}>
         <NavigationEvents onDidFocus={this.getAllDecks} />
         { loading && <Text>Loading</Text>  }
-        { decks &&
+        { decks ?
           <ScrollView>
           <FlatList
             data={ deckIds }
@@ -61,11 +61,12 @@ export default class DecksList extends React.Component {
             }}
             keyExtractor={ (deckIds, index) => index.toString()}
           />
-          <TouchableOpacity onPress={ this.createDeck }>
+          </ScrollView>
+        : 
+        <Text>Dont have decks created :( </Text>}
+        <TouchableOpacity onPress={ this.createDeck }>
             <Text>Create Deck</Text>
           </TouchableOpacity>
-          </ScrollView>
-        }
       </View>
     )
   }
