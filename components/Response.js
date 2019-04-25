@@ -12,7 +12,7 @@ export default class Response extends React.Component {
     const { restartQuiz, pontuation } = this.props
     return (
       <View style={styles.cardView}>
-        <Text style={styles.responseCard}>Your pontuation is: {pontuation} at 10 !</Text>
+        <Text style={styles.responseCard}>Question answers: {pontuation} %!</Text>
         <TouchableOpacity onPress={ restartQuiz } style={styles.createButton} >
           <Text style={styles.buttonText}>Restart Quiz!</Text>
         </TouchableOpacity>

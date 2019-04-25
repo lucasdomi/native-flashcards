@@ -49,7 +49,7 @@ export default class QuizPage extends React.Component {
 
   getPontuation = () => {
     const { correctCount, questionsCount } = this.state
-    return Math.round(correctCount / questionsCount * 1000) / 100
+    return Math.round( (correctCount / questionsCount) * 100)
   }
 
   render() {
