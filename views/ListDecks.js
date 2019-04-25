@@ -74,7 +74,7 @@ export default class DecksList extends React.Component {
           />
           </ScrollView>
         : 
-        <Text>Dont have decks created :( </Text>
+        <Text style={{alignItems: 'center', textAlign: 'center'}}>Dont have decks created :( </Text>
         }
       </View>
     )

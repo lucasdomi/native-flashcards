@@ -26,11 +26,11 @@ const styles = StyleSheet.create({
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#B0E0E6',
+      backgroundColor: 'white',
       height: heigthDevice + Header.HEIGHT ,
     },
     responseCard: {
-      color: 'blue',
+      color: 'black',
       textAlign: 'center',
       fontSize: 25,
       marginBottom: 15,

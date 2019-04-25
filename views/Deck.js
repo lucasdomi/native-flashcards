@@ -51,22 +51,22 @@ export default class Deck extends React.Component {
         <Text style={styles.questionText}>
           cards: {questions.length}
         </Text>
-        {questions.length > 0 && 
+        
           <TouchableOpacity
             style={styles.createButtonGhost}
             onPress={ () => this.addQuestion(title) }
           >
-            <Text style={styles.buttonText}>Add card</Text>
+            <Text style={styles.buttonTextAdd}>Add card</Text>
           </TouchableOpacity>
-        }
-
+        
+        {questions.length > 0 && 
           <TouchableOpacity
             style={styles.createButton}
             onPress={ () => this.goToQuiz(title,questions) }
           >
             <Text style={styles.buttonText}>Start Quiz</Text>
           </TouchableOpacity>
-        
+        }
       </View>
     )
   }
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#8338EC',
+    backgroundColor: 'white',
     paddingVertical: 0 ,
     paddingHorizontal: 30,
   },
@@ -102,14 +102,14 @@ const styles = StyleSheet.create({
   titleText: {
     fontSize: 24,
     textAlign: 'center',
-    color: 'white',
+    color: 'black',
     marginVertical: 15,
     marginHorizontal: 0,
   },
   questionText: {
     fontSize: 18,
     textAlign: 'center',
-    color: 'yellow',
+    color: 'gray',
     marginVertical: 20,
     marginHorizontal: 0,
   },
@@ -118,5 +118,11 @@ const styles = StyleSheet.create({
     textTransform: 'uppercase',
     fontSize: 14,
     textAlign: 'center'
-  }
+  },
+  buttonTextAdd: {
+    color: 'black',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center'
+  },
 });

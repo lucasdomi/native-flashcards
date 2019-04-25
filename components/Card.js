@@ -39,18 +39,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#B0E0E6',
+    backgroundColor: 'white',
   },
   cardQuestion: {
     color: '#111',
     fontSize: 25,
     marginBottom: 15,
     textAlign: 'center',
-  },
-  responseCard: {
-    textAlign: 'center',
-    color: 'blue',
-    marginTop: 5,
   },
   cardLink: {
     textAlign: 'center',
