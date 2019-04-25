@@ -18,7 +18,10 @@ export default class DeckCard extends React.Component {
 
 const styles = StyleSheet.create({
     createView: {
-      backgroundColor: '#ddd',
+      backgroundColor: 'white',
+      borderWidth: 1,
+      borderColor: 'black',
+      borderStyle: 'solid',
       paddingVertical: 25,
       paddingHorizontal: 40,
       marginBottom: 20,
