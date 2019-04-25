@@ -14,7 +14,7 @@ export default class Card extends React.Component {
     return (
       <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice - Header.HEIGHT, width: widthDevice }}>
         <View style={ styles.cardView }>
-          <Text style={{marginBottom: 10 ,color: 'gray', fontSize: 12}}>{ `Question ${index + 1} of ${questionCount}`}</Text>
+          <Text style={{marginBottom: 10 ,color: 'gray', fontSize: 12}}>{ `${index + 1} of ${questionCount}`}</Text>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
           <TouchableOpacity onPress={ () => this[`card${item.id}`].flip() } >
             <Text style={styles.cardLink}>Check the answer!</Text>

@@ -1,14 +1,24 @@
 import React from 'react'
-import { TouchableOpacity, Text, View, StyleSheet, ScrollView, FlatList } from 'react-native'
+import { TouchableOpacity, Text, View, StyleSheet, ScrollView, FlatList, Button } from 'react-native'
 import { getDecks } from '../asyncStorage'
 import DeckCard from '../components/DeckCard'
 import { NavigationEvents } from 'react-navigation';
 
 
 export default class DecksList extends React.Component {
-  static navigationOptions = {
-    title: 'Decks List',
-  }
+  static navigationOptions = ({ navigation }) => {
+   
+    return {
+      headerLeft: <Text style={{marginLeft: 10}}>Decks List</Text>,
+      headerRight: (
+        <TouchableOpacity onPress={() => navigation.navigate('CreateDeck', {})}>
+          <Text style={{marginRight: 10, color: 'red'}}>
+            Create New Deck
+          </Text>
+       </TouchableOpacity>
+      ),
+    };
+  };
 
   state = {
     loading: true,
@@ -38,7 +48,7 @@ export default class DecksList extends React.Component {
     const { navigate } = this.props.navigation
     navigate('CreateDeck', {})
   }
-
+  
   render () {
     const { loading, decks } = this.state
     const deckIds = decks && Object.keys(decks);
@@ -47,9 +57,6 @@ export default class DecksList extends React.Component {
       <View style={styles.homeView}>
         <NavigationEvents onDidFocus={this.getAllDecks} />
         { loading && <Text>Loading</Text>  }
-          <TouchableOpacity style={styles.createButton} onPress={ this.createDeck }>
-            <Text>Create New Deck</Text>
-          </TouchableOpacity>
         { decks ?
           <ScrollView>
           <FlatList
