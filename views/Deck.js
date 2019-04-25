@@ -47,20 +47,25 @@ export default class Deck extends React.Component {
         <Text style={styles.titleText}>
           {title}
         </Text>
+        <Text style={styles.questionText}>
+          cards: {questions.length}
+        </Text>
         {questions.length > 0 && 
+          <TouchableOpacity
+            style={styles.createButtonGhost}
+            onPress={ () => this.addQuestion(title) }
+          >
+            <Text style={styles.buttonText}>Add card</Text>
+          </TouchableOpacity>
+        }
+
           <TouchableOpacity
             style={styles.createButton}
             onPress={ () => this.goToQuiz(title,questions) }
           >
             <Text style={styles.buttonText}>Start Quiz</Text>
           </TouchableOpacity>
-        }
-        <TouchableOpacity
-          style={styles.createButtonGhost}
-          onPress={ () => this.addQuestion(title) }
-        >
-          <Text style={styles.buttonText}>Add Question</Text>
-        </TouchableOpacity>
+        
       </View>
     )
   }
@@ -88,6 +93,7 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 50,
     borderWidth: 1,
+    width: 200,
     borderColor: '#ec38a1',
     marginVertical: 7,
     marginHorizontal: 0
@@ -97,6 +103,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: 'white',
     marginVertical: 15,
+    marginHorizontal: 0,
+  },
+  questionText: {
+    fontSize: 18,
+    textAlign: 'center',
+    color: 'yellow',
+    marginVertical: 20,
     marginHorizontal: 0,
   },
   buttonText: {

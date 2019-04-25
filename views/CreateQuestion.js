@@ -53,7 +53,7 @@ export default class CreateDeck extends React.Component {
           style={styles.createButton}
           onPress={ this.handleAddQuestion }
         >
-          <Text style={styles.buttonText}>Add Question</Text>
+          <Text style={styles.buttonText}>Add question</Text>
         </TouchableOpacity>
       </KeyboardAvoidingView>
     )

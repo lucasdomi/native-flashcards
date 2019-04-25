@@ -47,6 +47,9 @@ export default class DecksList extends React.Component {
       <View style={styles.homeView}>
         <NavigationEvents onDidFocus={this.getAllDecks} />
         { loading && <Text>Loading</Text>  }
+          <TouchableOpacity style={styles.createButton} onPress={ this.createDeck }>
+            <Text>Create New Deck</Text>
+          </TouchableOpacity>
         { decks ?
           <ScrollView>
           <FlatList
@@ -62,10 +65,8 @@ export default class DecksList extends React.Component {
           />
           </ScrollView>
         : 
-        <Text>Dont have decks created :( </Text>}
-          <TouchableOpacity style={styles.textButtonNewDeck} onPress={ this.createDeck }>
-            <Text>Create Deck</Text>
-          </TouchableOpacity>
+        <Text>Dont have decks created :( </Text>
+        }
       </View>
     )
   }
@@ -74,11 +75,24 @@ export default class DecksList extends React.Component {
 const styles = StyleSheet.create({
   homeView: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: 15,
     paddingHorizontal: 20,
-    justifyContent: 'flex-start'
+    justifyContent: 'flex-start',
   },
   textButtonNewDeck: {
     textAlign: 'center',
-  }
+  },
+  createButton: {
+    backgroundColor: '#ec38a1',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    borderRadius: 10,   
+
+    // marginBottom: 20,
+    marginBottom: 15,
+    marginHorizontal: 0
+  },
 });

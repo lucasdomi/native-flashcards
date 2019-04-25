@@ -12,7 +12,7 @@ export default class Card extends React.Component {
   render() {
     const { item, index, questionCount, goToNext } = this.props
     return (
-      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice, width: widthDevice }}>
+      <CardFlip ref={ ( card ) => this['card' + item.id] = card } style={{ height: heigthDevice - Header.HEIGHT, width: widthDevice }}>
         <View style={ styles.cardView }>
           <Text style={{marginBottom: 10 ,color: 'gray', fontSize: 12}}>{ `Question ${index + 1} of ${questionCount}`}</Text>
           <Text style={styles.cardQuestion}>{ item.question }</Text>
@@ -22,9 +22,12 @@ export default class Card extends React.Component {
         </View>
         <View style={styles.cardView}>
           <Text style={styles.cardQuestion}>{ item.answer }</Text>
-          <Button title='Yes' color='green' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, true )} />
-          <View style={{ marginBottom: 10 }} />
-          <Button title='No' color='red' onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, false ) }/>
+          <TouchableOpacity style={styles.createButtonCorrect} onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, true )}>
+            <Text style={styles.buttonText}>Correct</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.createButtonIncorrect} onPress={ () => this.handleVote( this[`card${item.id}`], goToNext, false )}>
+            <Text style={styles.buttonText}>Incorrect</Text>
+          </TouchableOpacity>
         </View>
     </CardFlip>
     );
@@ -34,7 +37,6 @@ export default class Card extends React.Component {
 const styles = StyleSheet.create({
   cardView: {
     flex: 1,
-    padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#B0E0E6',
@@ -54,5 +56,27 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#0E79B2',
     marginTop: 10,
+  },
+  createButtonCorrect: {
+    backgroundColor: 'green',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    width: 200,
+    marginVertical: 7,
+    marginHorizontal: 0
+  },
+  createButtonIncorrect: {
+    backgroundColor: 'red',
+    paddingVertical: 10,
+    paddingHorizontal: 50,
+    width: 200,
+    marginVertical: 7,
+    marginHorizontal: 0
+  },
+  buttonText: {
+    color: 'white',
+    textTransform: 'uppercase',
+    fontSize: 14,
+    textAlign: 'center'
   }
 });

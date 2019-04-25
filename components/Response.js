@@ -13,8 +13,8 @@ export default class Response extends React.Component {
     return (
       <View style={styles.cardView}>
         <Text style={styles.responseCard}>Your pontuation is: {pontuation} at 10 !</Text>
-        <TouchableOpacity onPress={ restartQuiz } >
-        < Text>Restart Quiz!</Text>
+        <TouchableOpacity onPress={ restartQuiz } style={styles.createButton} >
+          <Text style={styles.buttonText}>Restart Quiz!</Text>
         </TouchableOpacity>
       </View>
     )
@@ -27,11 +27,33 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: '#B0E0E6',
-      height: heigthDevice,
+      height: heigthDevice + Header.HEIGHT ,
     },
     responseCard: {
-      textAlign: 'center',
       color: 'blue',
-      fontSize: 30,
+      textAlign: 'center',
+      fontSize: 25,
+      marginBottom: 15,
     },
+    restartCard: {
+      backgroundColor: 'black',
+      color: 'white',
+      justifyContent: 'center',
+      alignItems: 'center',
+      fontSize: 18,
+    },
+    createButton: {
+      backgroundColor: 'black',
+      paddingVertical: 10,
+      paddingHorizontal: 30,
+      width: 200,
+      marginVertical: 10,
+      marginHorizontal: 0
+    },
+    buttonText: {
+      color: 'white',
+      textTransform: 'uppercase',
+      fontSize: 14,
+      textAlign: 'center'
+    }
   });

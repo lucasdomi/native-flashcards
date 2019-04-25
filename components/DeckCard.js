@@ -9,7 +9,7 @@ export default class DeckCard extends React.Component {
       <TouchableOpacity onPress={() => goToDeckPage(title, questions)}>
         <View style={styles.createView}>
           <Text style={styles.deckText}>{ title }</Text>
-          <Text style={styles.totalQuestions}>{ questions.length } questions</Text>
+          <Text style={styles.totalQuestions}>{ questions.length } cards</Text>
         </View>
       </TouchableOpacity>
     )
