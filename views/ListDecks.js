@@ -3,6 +3,7 @@ import { TouchableOpacity, Text, View, StyleSheet, ScrollView, FlatList, Button 
 import { getDecks } from '../asyncStorage'
 import DeckCard from '../components/DeckCard'
 import { NavigationEvents } from 'react-navigation';
+import { setLocalNotification } from '../helpers/notification'
 
 
 export default class DecksList extends React.Component {
@@ -26,6 +27,7 @@ export default class DecksList extends React.Component {
   }
 
   componentDidMount() {
+    setLocalNotification()
     this.getAllDecks()
   }
 

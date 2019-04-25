@@ -2,7 +2,7 @@ import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
 import { getQuestionsByDeck } from '../asyncStorage';
 import { NavigationEvents } from 'react-navigation';
-
+import {clearLocalNotification, setLocalNotification } from '../helpers/notification'
 export default class Deck extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
@@ -34,6 +34,7 @@ export default class Deck extends React.Component {
 
   goToQuiz = (title, questions) => {
     const { navigate } = this.props.navigation
+    clearLocalNotification().then(setLocalNotification)
     navigate('QuizPage', { title, questions })
   }
 
