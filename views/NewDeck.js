@@ -55,10 +55,9 @@ const styles = StyleSheet.create({
       height: heigthDevice*0.5,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#98AFC7',
+      backgroundColor: 'white',
       paddingVertical: 0,
       paddingHorizontal: 30,
-      
     },
     createInput: {
       width: widthDevice * 0.8,
